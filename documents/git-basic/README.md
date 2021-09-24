@@ -203,6 +203,18 @@ $ git log --pretty=oneline
 이는 `git commit --amend` 명령어를 통해서 가능하다. 그러면 에디 창이 열린다.
 
 또 다른 방법은 `git commit --amend -m "변경 메시지"` 를 통해서 가능하다. 
+
+
+### 커밋 파일 추가 
+
+이미 커밋을 하고나서 그 커밋에 파일을 추가하고 싶을 때 사용하는 방법을 소개한다. 
+
+.gitignore 에 다음과 같이 입력하자. 
+
+```text
+# Runtime data
+{파일이름}
 ```
 
-```
+그 후 `git add .gitignore` 을 한 후 `git commit --amend --no-edit` 명령어를 하면 .gitignore 에 올렸던 파일이 기존 커밋에 추가된다. 
+
