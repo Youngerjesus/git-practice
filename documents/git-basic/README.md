@@ -120,4 +120,89 @@ $ cat .git/config
   
   - 중요한 건 처음 파일을 만들 때는 Untracked 상태이지만 한번이라도 스테이징 영역에 올려서 Tracked 상태가 되면 이후에 커밋을 하고 수정을 해도 Untracked 상태가 되지는 않는다 라는 점이다. 
   
+- Unmodified 및 Modified 상태
+
+  - 한번이라도 스테이징 영역에 올라간 파일의 상태는 Unmodified 와 Modified 상태로 나뉜다. 
   
+  - Modified 상태는 커밋을 할 수 있는 상태를 말한다.
+  
+***
+
+## 커밋 이해하기 
+
+`git log` 명령어로 현재 작업하는 브랜치에서 변경 내역들인 커밋 내역들을 보는게 가능하다. __(브랜치는 독립적인 개발 공간을 말한다.)__
+
+깃에는 HEAD 라는 특별한 포인터가 있는데 HEAD 포인터는 브랜치의 최종 커밋을 가리킨다.  
+
+`git log` 의 시용법과 여러 옵션들에 대해서 한번 알아보자. 
+
+### git log 
+
+```
+$ git log 
+
+commit 1f62a454039b6e2774da648f9dc824758c28b01b (HEAD -> main, origin/main, origin/HEAD)
+Author: Jeongmin Yeo <yjh930919@gmail.com>
+Date:   Sat Sep 25 00:33:31 2021 +0900
+
+    Initial commit
+```
+
+- 먼저 commit 으로 되어 있는 부분은 커밋 체크섬으로 커밋을 식별하기 위한 고유의 값을 말한다. 
+
+- Author 는 작업한 사람과 이메일을 말한다. 
+
+- Date 는 작업한 일자를 말한다. 
+
+- 밑에 메시지는 커밋 메시지를 말한다. 
+
+### git log -p 
+```
+$ git log -p 
+
+commit 1f62a454039b6e2774da648f9dc824758c28b01b (HEAD -> main, origin/main, origin/HEAD)
+Author: Jeongmin Yeo <yjh930919@gmail.com>
+Date:   Sat Sep 25 00:33:31 2021 +0900
+
+    Initial commit
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..d8763bd
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,2 @@
++# git-practice
++git 을 잘 쓰는 방법에 대해 정리한 레파지토리 입니다. 
+```
+
+- -p 옵션은 patch 를 말하고 변경 내역들에 대해 좀 더 자세하게 보여준다. 
+
+### git log -[숫자]
+
+git 커밋 내역을 숫자 만큼의 개수를 보여준다
+
+### git log --pretty={option}
+
+--pretty 옵션은 출력 내역을 이쁘게 보는 방식을 말한다. 
+
+--pretty 옵션으로 oneline 으로 하면 말 그대로 한 줄씩 출력하게 되서 커밋 메시지들을 확인하는데 좋다. 
+
+```
+$ git log --pretty=oneline
+
+1f62a454039b6e2774da648f9dc824758c28b01b (HEAD -> main, origin/main, origin/HEAD) Initial commit
+```
+
+### 커밋 수정하기 
+
+작업을 하다보면 커밋 메시지를 잘못 작성하는 경우가 있다.
+
+여기서는 마지막 커밋 메시지만 수정하는 방법을 살펴보겠다. 
+
+이는 `git commit --amend` 명령어를 통해서 가능하다. 그러면 에디 창이 열린다.
+
+또 다른 방법은 `git commit --amend -m "변경 메시지"` 를 통해서 가능하다. 
+```
+
+```
