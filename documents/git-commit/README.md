@@ -49,4 +49,48 @@ git cherry-pick 을 이용하면 다음과 같이 작업하는게 가능해진�
 `git rebase <커밋을 가져올 브랜치>` 를 통해서 커밋을 정렬하면 현재 브런치로 커밋을 가져와서 정렬시킨다. 
 
 이를 통해서 여러 Fast Forward 머지가 가능해지므로 이력이 깔끔하게 보인다.
- 
+
+
+***
+
+## 커밋 메시지 변경하기 
+
+가장 최근의 커밋 메시지를 변경할려면 다음과 같은 명령어를 사용하면 된다. 
+
+`git commit --amend -m "변경할 커밋 메시지"`
+
+가장 최근 커밋 말고 이전의 커밋까지 메시지를 변경하고 싶다면 다음과 같은 명령어를 이용하자 
+
+`git rebase -i HEAD~[이전 커밋 숫자]` 
+
+그러면 다음과 같은 창이 나온다. 
+
+```
+$ git rebase -i HEAD~3
+
+pick 17a439d Git Commit Message Change 
+pick 0414e61 Rebase Test 1
+pick f88f67f ADD Commit Message Change 2
+
+# Rebase 09727a1..f88f67f onto 09727a1 (3 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup <commit> = like "squash", but discard this commit's log message
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+``` 
+
+- 여기서 pick 이라는 부분을 reword 로 바꿔주면 커밋 메시지를 변경할 수 있는 창이 열린다. __(추가로 맨 밑에 있는 pick 이 가장 최근의 커밋 메시지를 나타낸다.)__
+
+- 만약 커밋 메시지를 변경하는 창이 안나온다면 다음과 같은 메시지를 입력하면 된다. `git rebase --edit-todo` 를 입력하면 편집 창이 나오고 수정한 다음 `:wq` 를 입력하면 그 커밋 메시지는 변경을 한 것이다. 이후 다음 메시지로 가고싶다면 `git rebase --continue` 를 입력하면 다음 창으로 넘어간다. 
+
+- 이후 원격 저장소의 커밋 메시지까지 변경하고 싶다면 `git push -f` 명령어를 입력하면 된다. -f 옵션은 --force 를 나타낸다. 
