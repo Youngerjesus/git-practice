@@ -93,6 +93,36 @@ Fast Forward 방식은 다른 브랜치에서 작업했던 커밋이 기존 브�
 
 그러면 병합 충돌을 해결할 수 있다. 
 
+### Merge Strategies 
+
+Git 에서 Merge 하는 전략은 여러개가 있다. 
+
+- Fast Forward
+
+- Recursive
+
+- Ours
+
+- Octopus 
+
+- Resolve
+
+- Subtree
+
+여기서는 제일 많이 사용하는 Fast Forward 와 Recursive 를 알아보겠다. 
+
+Fast Forward 는 줄여서 ff 라고 많이 사용하는데 `git merge` 의 기본 옵션이다. 
+
+그냥 Fast Forward 를 사용할 수 있는 환경이라면 ff 를 자동적으로 사용한다. 
+
+ff 는 커밋 히스토리의 조상이 같을 경우에 사용하는 방식으로 머지를 했을 때 하나의 라인으로 유지시킬 수 있다는 점이 있다. 
+
+Recursive 방식은 `git merge --no-ff` 라는 명령어를 통해서 합칠 수 있는데 커밋 히스토리에서 같은 조상이 아닐때 머지하는 방식으로 새로운 머지 커밋을 만들면서 머지를 하는 방식이다. 
+
+그래서 머지를 했던 시점을 확실하게 알 수 있다는 장점이 있다. 
+
+우아한 형제들에서는 Recursive 방식과 머지 후 해당 브런치를 삭제하는 방식을 이용한다.  
+
 ### Pull Request 요청하기 
 
 Pull Request 란 병합을 하기 전에 동료들에게 피드백을 받는 과정이라고 생각하면 된다. 
